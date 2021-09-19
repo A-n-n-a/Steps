@@ -24,6 +24,8 @@
 		9553F90826F7403300028FA1 /* CommentsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9553F90726F7403300028FA1 /* CommentsEndpoint.swift */; };
 		9553F90B26F7422400028FA1 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9553F90A26F7422400028FA1 /* Comment.swift */; };
 		9553F90D26F7CF9600028FA1 /* CommentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9553F90C26F7CF9600028FA1 /* CommentsService.swift */; };
+		9553F91126F7D05000028FA1 /* InputNumbersValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9553F91026F7D05000028FA1 /* InputNumbersValidator.swift */; };
+		9553F91726F7DDA200028FA1 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9553F91626F7DDA200028FA1 /* UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		9553F90726F7403300028FA1 /* CommentsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsEndpoint.swift; sourceTree = "<group>"; };
 		9553F90A26F7422400028FA1 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		9553F90C26F7CF9600028FA1 /* CommentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsService.swift; sourceTree = "<group>"; };
+		9553F91026F7D05000028FA1 /* InputNumbersValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputNumbersValidator.swift; sourceTree = "<group>"; };
+		9553F91626F7DDA200028FA1 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 				9553F8FF26F72AB800028FA1 /* Coordinator */,
 				9553F8F126F7046D00028FA1 /* InitialViewController */,
 				9553F8FA26F7131F00028FA1 /* Services */,
+				9553F91526F7DD8400028FA1 /* Extensions */,
 				9553F8CA26F65DF200028FA1 /* Assets.xcassets */,
 				9553F8CC26F65DF200028FA1 /* LaunchScreen.storyboard */,
 				9553F8CF26F65DF200028FA1 /* Info.plist */,
@@ -161,6 +166,7 @@
 		9553F8FA26F7131F00028FA1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9553F90F26F7D03600028FA1 /* Validators */,
 				9553F90926F7420900028FA1 /* CodableModels */,
 				9553F90026F7333B00028FA1 /* NetworkService */,
 			);
@@ -201,6 +207,22 @@
 				9553F90C26F7CF9600028FA1 /* CommentsService.swift */,
 			);
 			path = CommentsService;
+			sourceTree = "<group>";
+		};
+		9553F90F26F7D03600028FA1 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				9553F91026F7D05000028FA1 /* InputNumbersValidator.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		9553F91526F7DD8400028FA1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9553F91626F7DDA200028FA1 /* UIViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9553F91726F7DDA200028FA1 /* UIViewController.swift in Sources */,
 				9553F8C626F65DED00028FA1 /* InitialViewController.swift in Sources */,
 				9553F90826F7403300028FA1 /* CommentsEndpoint.swift in Sources */,
 				9553F90526F73FA800028FA1 /* Endpoint.swift in Sources */,
@@ -341,6 +364,7 @@
 				9553F90626F73FA800028FA1 /* APIError.swift in Sources */,
 				9553F8C226F65DED00028FA1 /* AppDelegate.swift in Sources */,
 				9553F90426F73FA800028FA1 /* NetworkServiceProtocol.swift in Sources */,
+				9553F91126F7D05000028FA1 /* InputNumbersValidator.swift in Sources */,
 				9553F90B26F7422400028FA1 /* Comment.swift in Sources */,
 				9553F8F726F70D7700028FA1 /* AppCoordinator.swift in Sources */,
 				9553F8C426F65DED00028FA1 /* SceneDelegate.swift in Sources */,

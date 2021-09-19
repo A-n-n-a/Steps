@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InitialViewController" customModule="Steps_test" customModuleProvider="target">
             <connections>
+                <outlet property="button" destination="7QM-Vt-hdh" id="G9W-zR-qRm"/>
+                <outlet property="firstTextField" destination="kgZ-2W-kLP" id="3hO-hP-4fL"/>
+                <outlet property="secondTextField" destination="ZqL-V2-RT2" id="Gq8-T8-AMQ"/>
                 <outlet property="view" destination="h20-4z-OxN" id="8Gw-WE-poV"/>
             </connections>
         </placeholder>
@@ -22,7 +25,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nhN-CB-0r4">
                     <rect key="frame" x="20" y="348" width="374" height="200"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kgZ-2W-kLP">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter first value" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kgZ-2W-kLP">
                             <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="00T-ZI-xS2"/>
@@ -30,7 +33,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZqL-V2-RT2">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter second value" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZqL-V2-RT2">
                             <rect key="frame" x="0.0" y="150" width="374" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="fRv-5n-89u"/>
@@ -47,7 +50,7 @@
                         <constraint firstAttribute="height" constant="50" id="XCY-H1-2aB"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="Button">
+                    <state key="normal" title="Get comments">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -55,6 +58,9 @@
                             <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="getComments:" destination="-1" eventType="touchUpInside" id="rjw-Gg-YTt"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="pKp-EH-6An"/>

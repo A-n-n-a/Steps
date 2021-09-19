@@ -19,29 +19,32 @@ import Combine
 protocol InitialViewModelProtocol {
     init(dependency: InitialDependency)
     var networkService: NetworkServiceProtocol { get set }
+    func getComments() -> AnyPublisher<[Comment], Error>?
+    func validateValues(first: String, second: String) -> NumbersValidationResult
 }
 
 class InitialViewModel: InitialViewModelProtocol {
-    
-    private var cancellable = [AnyCancellable]()
     
     var networkService: NetworkServiceProtocol
     
     required init(dependency: InitialDependency) {
         self.networkService = dependency.networkService
-        
+    }
+    
+    func validateValues(first: String, second: String) -> NumbersValidationResult {
+        if
+            let firstInt = Int(first),
+            let secondInt = Int(second) {
+            return InputNumbersValidator.validateNumbers(first: firstInt, second: secondInt)
+        }
+        return .notNumbers
+    }
+    
+    func getComments() -> AnyPublisher<[Comment], Error>? {
         let intArray: [Int] = Array(3...5)
         if let commentService = networkService as? CommentsService {
-            commentService.getComments(endpoint: CommentsEndpoint(ids: intArray)).sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("===ERROR===", error)
-                }
-            } receiveValue: { comments in
-                print("===COMMENTS===", comments)
-            }.store(in: &cancellable)
+            return commentService.getComments(endpoint: CommentsEndpoint(ids: intArray))
         }
+        return nil
     }
 }
