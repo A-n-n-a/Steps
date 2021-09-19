@@ -23,7 +23,8 @@ class AppCoordinator: Coordinator {
         rootViewController = UINavigationController()
         rootViewController.setNavigationBarHidden(true, animated: false)
         
-        let dependency = InitialDependency(networkService: NetworkService())
+        let networkService = CommentsService()
+        let dependency = InitialDependency(networkService: networkService)
         initialCoordinator = InitialCoordinator(presenter: rootViewController, dependency: dependency)
     }
     
