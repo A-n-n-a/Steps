@@ -79,7 +79,7 @@ class InitialViewController: UIViewController {
     
     func updateButtonState() {
         let disableButton = firstValue.isEmpty || secondValue.isEmpty
-        button.alpha = disableButton ? 0.8 : 1
+        button.alpha = disableButton ? 0.7 : 1
         button.isEnabled = !disableButton
     }
     
