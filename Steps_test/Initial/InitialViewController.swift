@@ -92,15 +92,17 @@ class InitialViewController: UIViewController {
         let validationResult = viewModel?.validateValues(first: firstValue, second: secondValue)
         switch validationResult {
         case .valid:
-            getComments(startValue: firstValue, endValue: secondValue)
+            if let start = Int(firstValue), let end = Int(secondValue) {
+                getComments(startValue: start, endValue: end)
+            }
         default:
             showAnimation(show: false)
             showAlert(title: "Error", message: validationResult?.errorText)
         }
     }
     
-    private func getComments(startValue: String, endValue: String) {
-        viewModel?.getComments(startValue: startValue, endValue: endValue)?
+    private func getComments(startValue: Int, endValue: Int) {
+        viewModel?.getFirstComments(startValue: startValue, endValue: endValue)?
             .sink { [weak self] completion in
             switch completion {
             case .finished:
@@ -110,7 +112,6 @@ class InitialViewController: UIViewController {
                 self?.showAlert(title: "Error", message: error.localizedDescription)
             }
         } receiveValue: { [weak self] comments in
-            print("===COMMENTS===", comments.map({ $0.id }))
             self?.showAnimation(show: false)
         }.store(in: &cancellables)
     }

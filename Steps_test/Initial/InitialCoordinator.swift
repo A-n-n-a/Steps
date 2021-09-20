@@ -25,21 +25,19 @@ class InitialCoordinator: Coordinator {
         let initialViewController = InitialViewController(viewModel: initialViewModel)
         self.initialViewController = initialViewController
         
-        initialViewModel.showCommentsPublisher.sink { [weak self] comments in
+        initialViewModel.showCommentsPublisher.sink { [weak self] (comments, start, end) in
             if !comments.isEmpty {
-                self?.showCommentsViewController(comments: comments)
+                self?.showCommentsViewController(comments: comments, start: start, end: end)
             }
         }.store(in: &cancellables)
         
         presenter.pushViewController(initialViewController, animated: true)
     }
     
-    private func showCommentsViewController(comments: [Comment]) {
-        let commentsDependency = CommentsDependency(networkService: dependency.networkService, comments: comments)
+    private func showCommentsViewController(comments: [Comment], start: Int, end: Int) {
+        let commentsDependency = CommentsDependency(networkService: dependency.networkService, comments: comments, startValue: start, endValue: end)
         let commentsViewModel = CommentsViewModel(dependency: commentsDependency)
         let commentsViewController = CommentsViewController(viewModel: commentsViewModel)
-        
-//        initialViewController = initialViewController
         
         presenter.pushViewController(commentsViewController, animated: true)
     }

@@ -9,10 +9,10 @@ import Foundation
 
 struct CommentsEndpoint: Endpoint {
     
-    private let startValue: String
-    private let endValue: String
+    private let startValue: Int
+    private let endValue: Int
     
-    init(startValue: String, endValue: String) {
+    init(startValue: Int, endValue: Int) {
         self.startValue = startValue
         self.endValue = endValue
     }
