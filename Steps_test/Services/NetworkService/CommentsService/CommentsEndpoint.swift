@@ -9,10 +9,12 @@ import Foundation
 
 struct CommentsEndpoint: Endpoint {
     
-    private let ids: [Int]
+    private let startValue: String
+    private let endValue: String
     
-    init(ids: [Int]) {
-        self.ids = ids
+    init(startValue: String, endValue: String) {
+        self.startValue = startValue
+        self.endValue = endValue
     }
     
     var base: String {
@@ -21,9 +23,7 @@ struct CommentsEndpoint: Endpoint {
     
     var path: String {
         var path = "/comments"
-        path.append("?id=")
-        path.append(ids.map({ "\($0)"}).joined(separator: "&id="))
-        print("PATH", path)
+        path.append("?_sort=id&_order=asc&&_start=\(startValue)&_end=\(endValue)")
         return path
     }
 }

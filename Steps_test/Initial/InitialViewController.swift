@@ -13,6 +13,8 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var firstTextField: UITextField!
     @IBOutlet weak var secondTextField: UITextField!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var blockingView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var viewModel: InitialViewModelProtocol?
     private var cancellables = [AnyCancellable]()
@@ -31,6 +33,11 @@ class InitialViewController: UIViewController {
         addGestures()
         trackTextFieldsInput()
         updateButtonState()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     private func addGestures() {
@@ -81,27 +88,40 @@ class InitialViewController: UIViewController {
     }
     
     @IBAction func getComments(_ sender: Any) {
+        showAnimation(show: true)
         let validationResult = viewModel?.validateValues(first: firstValue, second: secondValue)
         switch validationResult {
         case .valid:
-            getComments()
+            getComments(startValue: firstValue, endValue: secondValue)
         default:
+            showAnimation(show: false)
             showAlert(title: "Error", message: validationResult?.errorText)
         }
     }
     
-    private func getComments() {
-        viewModel?.getComments()?
+    private func getComments(startValue: String, endValue: String) {
+        viewModel?.getComments(startValue: startValue, endValue: endValue)?
             .sink { [weak self] completion in
             switch completion {
             case .finished:
                 break
             case .failure(let error):
+                self?.showAnimation(show: false)
                 self?.showAlert(title: "Error", message: error.localizedDescription)
             }
-        } receiveValue: { comments in
-            print("===COMMENTS===", comments)
+        } receiveValue: { [weak self] comments in
+            print("===COMMENTS===", comments.map({ $0.id }))
+            self?.showAnimation(show: false)
         }.store(in: &cancellables)
+    }
+    
+    private func showAnimation(show: Bool) {
+        if show {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+        blockingView.isHidden = !show
     }
 }
 

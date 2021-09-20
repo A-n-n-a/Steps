@@ -5,6 +5,9 @@
 //  Created by Anna on 9/19/21.
 //
 
+import Foundation
+import Combine
+
 protocol Dependency {
     
 }
@@ -13,19 +16,21 @@ struct InitialDependency: Dependency {
     let networkService: NetworkServiceProtocol
 }
 
-import Foundation
-import Combine
-
 protocol InitialViewModelProtocol {
     init(dependency: InitialDependency)
     var networkService: NetworkServiceProtocol { get set }
-    func getComments() -> AnyPublisher<[Comment], Error>?
+    func getComments(startValue: String, endValue: String) -> AnyPublisher<[Comment], Error>?
     func validateValues(first: String, second: String) -> NumbersValidationResult
 }
 
 class InitialViewModel: InitialViewModelProtocol {
     
     var networkService: NetworkServiceProtocol
+    let showCommentsSubject = CurrentValueSubject<[Comment], Never>([])
+    var showCommentsPublisher: AnyPublisher<[Comment], Never> {
+        return showCommentsSubject.eraseToAnyPublisher()
+    }
+    private var cancellables = [AnyCancellable]()
     
     required init(dependency: InitialDependency) {
         self.networkService = dependency.networkService
@@ -40,10 +45,15 @@ class InitialViewModel: InitialViewModelProtocol {
         return .notNumbers
     }
     
-    func getComments() -> AnyPublisher<[Comment], Error>? {
-        let intArray: [Int] = Array(3...5)
+    func getComments(startValue: String, endValue: String) -> AnyPublisher<[Comment], Error>? {
         if let commentService = networkService as? CommentsService {
-            return commentService.getComments(endpoint: CommentsEndpoint(ids: intArray))
+            let commentsPublisher = commentService.getComments(endpoint: CommentsEndpoint(startValue: startValue, endValue: endValue))
+            commentsPublisher.sink { _ in
+            } receiveValue: { [weak self] comments in
+                self?.showCommentsSubject.send(comments)
+            }.store(in: &cancellables)
+
+            return commentsPublisher
         }
         return nil
     }

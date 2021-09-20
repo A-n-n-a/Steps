@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InitialViewController" customModule="Steps_test" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="OZq-Ma-xB1" id="glL-hd-aSj"/>
+                <outlet property="blockingView" destination="Djg-sa-ViS" id="4kD-Se-Oai"/>
                 <outlet property="button" destination="7QM-Vt-hdh" id="G9W-zR-qRm"/>
                 <outlet property="firstTextField" destination="kgZ-2W-kLP" id="3hO-hP-4fL"/>
                 <outlet property="secondTextField" destination="ZqL-V2-RT2" id="Gq8-T8-AMQ"/>
@@ -62,18 +64,35 @@
                         <action selector="getComments:" destination="-1" eventType="touchUpInside" id="rjw-Gg-YTt"/>
                     </connections>
                 </button>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Djg-sa-ViS">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="OZq-Ma-xB1">
+                            <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="OZq-Ma-xB1" firstAttribute="centerX" secondItem="Djg-sa-ViS" secondAttribute="centerX" id="TJn-TE-MGm"/>
+                        <constraint firstItem="OZq-Ma-xB1" firstAttribute="centerY" secondItem="Djg-sa-ViS" secondAttribute="centerY" id="oQ5-42-NxX"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="pKp-EH-6An"/>
             <color key="backgroundColor" systemColor="systemGray5Color"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Djg-sa-ViS" secondAttribute="bottom" id="3QR-yq-2P4"/>
                 <constraint firstItem="nhN-CB-0r4" firstAttribute="leading" secondItem="pKp-EH-6An" secondAttribute="leading" constant="20" id="9Af-mp-lfY"/>
                 <constraint firstItem="7QM-Vt-hdh" firstAttribute="leading" secondItem="pKp-EH-6An" secondAttribute="leading" constant="30" id="AEO-vA-2rz"/>
                 <constraint firstItem="pKp-EH-6An" firstAttribute="trailing" secondItem="nhN-CB-0r4" secondAttribute="trailing" constant="20" id="S8g-2b-bhP"/>
+                <constraint firstItem="Djg-sa-ViS" firstAttribute="top" secondItem="h20-4z-OxN" secondAttribute="top" id="a8D-Wz-pd3"/>
                 <constraint firstItem="nhN-CB-0r4" firstAttribute="centerY" secondItem="h20-4z-OxN" secondAttribute="centerY" id="iGr-Jr-dS2"/>
+                <constraint firstItem="Djg-sa-ViS" firstAttribute="leading" secondItem="pKp-EH-6An" secondAttribute="leading" id="mvD-MF-Kqe"/>
                 <constraint firstItem="pKp-EH-6An" firstAttribute="trailing" secondItem="7QM-Vt-hdh" secondAttribute="trailing" constant="30" id="nVw-OI-csF"/>
+                <constraint firstItem="Djg-sa-ViS" firstAttribute="trailing" secondItem="pKp-EH-6An" secondAttribute="trailing" id="qyH-w2-A2K"/>
                 <constraint firstItem="pKp-EH-6An" firstAttribute="bottom" secondItem="7QM-Vt-hdh" secondAttribute="bottom" constant="50" id="tYY-FT-Uy6"/>
             </constraints>
-            <point key="canvasLocation" x="-238" y="-573"/>
+            <point key="canvasLocation" x="-239.13043478260872" y="-573.21428571428567"/>
         </view>
     </objects>
     <resources>
