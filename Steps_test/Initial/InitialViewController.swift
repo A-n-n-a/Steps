@@ -16,11 +16,19 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var blockingView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var viewModel: InitialViewModelProtocol?
+    private var viewModel: InitialViewModelProtocol?
     private var cancellables = [AnyCancellable]()
     
-    var firstValue: String = ""
-    var secondValue: String = ""
+    private var firstValue: String = ""
+    private var secondValue: String = ""
+    private var requestExecuting = false {
+        didSet {
+            let buttonTitle = requestExecuting ? "Cancel" : "Get comments"
+            button.setTitle(buttonTitle, for: .normal)
+        }
+    }
+    
+    private var animationTimer: Timer?
     
     convenience init(viewModel: InitialViewModelProtocol) {
             self.init()
@@ -88,7 +96,14 @@ class InitialViewController: UIViewController {
     }
     
     @IBAction func getComments(_ sender: Any) {
-        showAnimation(show: true)
+        if requestExecuting {
+            viewModel?.cancelRequest()
+        } else {
+            validateValues()
+        }
+    }
+    
+    private func validateValues() {
         let validationResult = viewModel?.validateValues(first: firstValue, second: secondValue)
         switch validationResult {
         case .valid:
@@ -96,12 +111,12 @@ class InitialViewController: UIViewController {
                 getComments(startValue: start, endValue: end)
             }
         default:
-            showAnimation(show: false)
             showAlert(title: "Error", message: validationResult?.errorText)
         }
     }
     
     private func getComments(startValue: Int, endValue: Int) {
+        showAnimation(show: true)
         viewModel?.getFirstComments(startValue: startValue, endValue: endValue)?
             .sink { [weak self] completion in
             switch completion {
@@ -119,10 +134,26 @@ class InitialViewController: UIViewController {
     private func showAnimation(show: Bool) {
         if show {
             activityIndicator.startAnimating()
+            startAnimationTimer()
         } else {
             activityIndicator.stopAnimating()
         }
         blockingView.isHidden = !show
+        requestExecuting = show
+    }
+    
+    private func startAnimationTimer() {
+        var animationTime = 3
+        animationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
+            guard let self = self else { return }
+            if animationTime > 0 {
+                animationTime -= 1
+            } else {
+                self.animationTimer?.invalidate()
+                self.showAnimation(show: false)
+                self.viewModel?.cancelRequest()
+            }
+        })
     }
 }
 

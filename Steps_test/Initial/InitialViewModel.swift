@@ -21,6 +21,7 @@ protocol InitialViewModelProtocol {
     var networkService: NetworkServiceProtocol { get set }
     func getFirstComments(startValue: Int, endValue: Int) -> AnyPublisher<[Comment], Error>?
     func validateValues(first: String, second: String) -> NumbersValidationResult
+    func cancelRequest()
 }
 
 class InitialViewModel: InitialViewModelProtocol {
@@ -61,5 +62,9 @@ class InitialViewModel: InitialViewModelProtocol {
             return commentsPublisher
         }
         return nil
+    }
+    
+    func cancelRequest() {
+        networkService.cancelRequest()
     }
 }

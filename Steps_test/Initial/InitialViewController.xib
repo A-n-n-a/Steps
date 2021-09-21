@@ -45,6 +45,19 @@
                         </textField>
                     </subviews>
                 </stackView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Djg-sa-ViS">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="OZq-Ma-xB1">
+                            <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="OZq-Ma-xB1" firstAttribute="centerX" secondItem="Djg-sa-ViS" secondAttribute="centerX" id="TJn-TE-MGm"/>
+                        <constraint firstItem="OZq-Ma-xB1" firstAttribute="centerY" secondItem="Djg-sa-ViS" secondAttribute="centerY" id="oQ5-42-NxX"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7QM-Vt-hdh">
                     <rect key="frame" x="30" y="762" width="354" height="50"/>
                     <color key="backgroundColor" name="AccentColor"/>
@@ -64,19 +77,6 @@
                         <action selector="getComments:" destination="-1" eventType="touchUpInside" id="rjw-Gg-YTt"/>
                     </connections>
                 </button>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Djg-sa-ViS">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                    <subviews>
-                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="OZq-Ma-xB1">
-                            <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                        </activityIndicatorView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="OZq-Ma-xB1" firstAttribute="centerX" secondItem="Djg-sa-ViS" secondAttribute="centerX" id="TJn-TE-MGm"/>
-                        <constraint firstItem="OZq-Ma-xB1" firstAttribute="centerY" secondItem="Djg-sa-ViS" secondAttribute="centerY" id="oQ5-42-NxX"/>
-                    </constraints>
-                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="pKp-EH-6An"/>
             <color key="backgroundColor" systemColor="systemGray5Color"/>

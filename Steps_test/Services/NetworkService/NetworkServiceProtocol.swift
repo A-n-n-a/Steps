@@ -13,6 +13,7 @@ protocol NetworkServiceProtocol {
     func execute<T>(_ request: URLRequest,
                     decodingType: T.Type,
                     queue: DispatchQueue) -> AnyPublisher<T, Error> where T: Decodable
+    func cancelRequest()
 }
 
 extension NetworkServiceProtocol {
@@ -31,5 +32,11 @@ extension NetworkServiceProtocol {
             .decode(type: T.self, decoder: JSONDecoder())
             .receive(on: queue)
             .eraseToAnyPublisher()
+    }
+    
+    func cancelRequest() {
+        session.getAllTasks { tasks in
+            tasks.forEach({ $0.cancel() })
+        }
     }
 }
